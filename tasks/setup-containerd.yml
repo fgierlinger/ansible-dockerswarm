@@ -22,9 +22,10 @@
     or (ansible_os_family == 'RedHat' and ansible_distribution_major_version != '8')
 
 - name: Install containerd on RHEL 8.
-  package:
+  dnf:
     name: "https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm"
     state: "{{ containerd_package_state }}"
+    update_cache: yes
   when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8'
 
 - block:
